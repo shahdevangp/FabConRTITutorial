@@ -44,7 +44,7 @@ Also, here's a detailed [article](<https://techcommunity.microsoft.com/t5/startu
 - [Hiram Fleitas](<https://aka.ms/hiram>), Microsoft, Sr CSA
 - Guy Yehudy, Microsoft, Prin PM
 
-### Originators of this content
+### Authors
 - Brian Bønk Rueløkke, Data Platform MVP
 - Devang Shah, Microsoft, Principal Program Manager
 - Frank Geisler, Data Platform MVP
