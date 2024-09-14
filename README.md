@@ -1,6 +1,6 @@
-# Fabric - Real Time Intelligence 
+# European Microsoft Fabric Conference - Real Time Intelligence Tutorial 
 
-## Building a medallion architecture using Fabric Real-Time Intelligence
+## Building a Fabric Real-Time Intelligence solution in a day
 
 To get started proceed to the moaw. 
 
@@ -8,11 +8,17 @@ To get started proceed to the moaw.
 - [moaw docs](docs/workshop.md)
 - Optional presentation ([PDF](docs/_Real-Time%20Intelligence%20in%20Fabric%20L200%20pitch%20deck.PDF))
 
-### Authors
+### Credits to originators of this tutorial
 - [Denise Schlesinger](<https://github.com/denisa-ms>), Microsoft, Prin CSA
 - [Hiram Fleitas](<https://aka.ms/hiram>), Microsoft, Sr CSA
 - Guy Yehudy, Microsoft, Prin PM
 
+### Authors
+- Brian Bønk Rueløkke, Data Platform MVP
+- Devang Shah, Microsoft, Principal Program Manager
+- Frank Geisler, Data Platform MVP
+- Johan Ludvig Brattås, Data Platform MVP
+- Matt Gordon, Data Platform MVP
 
 ### Contributing
 
