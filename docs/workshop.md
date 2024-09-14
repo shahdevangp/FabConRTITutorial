@@ -1,7 +1,7 @@
 ---
-published: true                        # Optional. Set to true to publish the workshop (default: false)
+published: false                        # Optional. Set to true to publish the workshop (default: false)
 type: workshop                          # Required.
-title: Building a Medallion Architecture using MS Fabric Real-Time Intelligence               # Required. Full title of the workshop
+title: Building a Microsoft Fabric Real-Time Intelligence solution in a day               # Required. Full title of the workshop
 short_title: Real-Time Intelligence Tutorial    # Optional. Short title displayed in the header
 description: In this technical workshop, you will build a complete analytics platform for streaming & batching data.   # Required.
 level: intermediate                         # Required. Can be 'beginner', 'intermediate' or 'advanced'
@@ -18,11 +18,11 @@ tags: fabric, kql, realtime, intelligence, event, stream, sql, data, analytics, 
 # Introduction
 Suppose you own an e-commerce website selling bike accessories. You have millions of visitors a month, you want to analyze the website traffic, consumer patterns and predict sales.  
 
-This workshop will walk you through the process of building an end-to-end [Real-Time Intelligence](<https://blog.fabric.microsoft.com/en-us/blog/introducing-real-time-intelligence-in-microsoft-fabric>) Solution in MS Fabric, using the medallion architecture, for your e-commerce website.  
+This workshop will walk you through the process of building an end-to-end [Real-Time Intelligence](<https://blog.fabric.microsoft.com/en-us/blog/introducing-real-time-intelligence-in-microsoft-fabric>) Solution in MS Fabric, using the real-time medallion architecture, for your e-commerce website.  
 
 You will learn how to:
 - Build a medallion architecture in Fabric Real-Time Intelligence. 
-- Use Fabric shortcuts & Data Factory pipelines to get data from operational DBs like SQL Server (with AdventureWorksLT sample data).
+- Use Fabric shortcuts to get data OneLake into Fabric Real-Time Intelligence (with AdventureWorksLT sample data).
 - Stream events into Fabric Eventhouse via Eventstream & leverage OneLake availability.
 - Create real-time data transformations in Fabric Eventhouse through the power of Kusto Query Language (KQL) & Fabric Copilot.
 - Create real-time visualizations using Real-Time Dashboards and automate actions.
@@ -30,19 +30,26 @@ You will learn how to:
 See what real customers like [McLaren](<https://www.linkedin.com/posts/shahdevang_if-you-missed-flavien-daussys-story-at-build-activity-7199013652681633792-3hdp>), [Dener Motorsports](<https://customers.microsoft.com/en-us/story/1751743814947802722-dener-motorsport-producose-ltd-azure-service-fabric-other-en-brazil>), [Elcome](<https://customers.microsoft.com/en-us/story/1770346240728000716-elcome-microsoft-copilot-consumer-goods-en-united-arab-emirates>), [Seair Exim Solutions](<https://customers.microsoft.com/en-us/story/1751967961979695913-seair-power-bi-professional-services-en-india>) & [One NZ](<https://customers.microsoft.com/en-us/story/1736247733970863057-onenz-powerbi-telecommunications-en-new-zealand>) are saying.
 
 All the **code** in this tutorial can be found here:   
-[Building a Medallion Architecture on Fabric Real-Time Intelligence](<https://github.com/microsoft/FabricRTIWorkshop/>)  
+[Building a Medallion Architecture on Fabric Real-Time Intelligence](<https://github.com/microsoft/FabricRTIWorkshop/](https://github.com/shahdevangp/FabConRTITutorial/>)  
 
 Also, here's a detailed [article](<https://techcommunity.microsoft.com/t5/startups-at-microsoft/building-a-real-time-medallion-architecture-using-eventhouse-in/ba-p/4110686>) explaining this tutorial.
 
 ### Duration
-- Lab 1-2 hours (section 8).
+- Lab 2-3 hours (section 8).
 - Theoretical context 30-45 minutes (sections 1-6) or optional [presentation](<https://github.com/microsoft/FabricRTIWorkshop/blob/main/presentation/_Real-Time%20Intelligence%20in%20Fabric%20L200%20pitch%20deck.PDF>).
 - Lab [pre-reqs](<https://moaw.dev/workshop/?src=gh%3Amicrosoft%2FFabricRTIWorkshop%2Fmain%2Fdocs%2F&step=6>) 30-45 minutes (section 7, recommend provisioning trial tenant prior if necessary).
 
-### Authors
+### Originators of this content
 - [Denise Schlesinger](<https://github.com/denisa-ms>), Microsoft, Prin CSA
 - [Hiram Fleitas](<https://aka.ms/hiram>), Microsoft, Sr CSA
 - Guy Yehudy, Microsoft, Prin PM
+
+### Originators of this content
+- Brian Bønk Rueløkke, Data Platform MVP
+- Devang Shah, Microsoft, Principal Program Manager
+- Frank Geisler, Data Platform MVP
+- Johan Ludvig Brattås, Data Platform MVP
+- Matt Gordon, Data Platform MVP
 
 ### Feedback - Contributing
 - Rate this lab or give us feedback to improve using this short [Eval](<https://forms.office.com/r/xhW3GAtAhi>). Scan this QR Code to open the evaluation form on your phone.
@@ -50,31 +57,6 @@ Also, here's a detailed [article](<https://techcommunity.microsoft.com/t5/startu
 ![QR Code](assets/QRCodeLabEval-Small.png "QR Code")
 
 - If you'd like to contribute to this lab, report a bug or issue, please feel free to submit a Pull-Request to the [GitHub repo](<https://github.com/microsoft/FabricRTIWorkshop/>) for us to review or [submit Issues](<https://github.com/microsoft/FabricRTIWorkshop/issues>) you encounter.
-
-
----
-
-# What is the Medallion Architecture?
-The inspiration for this tutorial was the realization that **Eventhouse** aligns perfectly with the Medallion's architecture requirements. 
-
-The Medallion architecture is a data design pattern with 3 layers:
-
-🥉 The Bronze layer: containing raw data being streamed into a data platform, these are **Eventhouse** continuous ingestion capabilities.  
-
-🥈 The Silver Layer: a curated enriched layer of data, based on transformed data from the Bronze layer. This can be achieved with Eventhouse's **update policies**.   
-
-🥇 The Gold Layer: aggregated data for reporting and BI, this can be achieved with Eventhouse's **materialized views**.  
-
-The Medallion architecture (also coined by Databricks) is a data design pattern used to logically organize data. The goal is to **incrementally** improve the structure and quality of data as it flows through each layer of the architecture, performantly at enterprise scale. Medallion architectures are sometimes also referred to as "multi-hop" architectures.
-
-Creating a multi-layer data platform allow companies to improve data quality across the layers and at the same time provide for their business needs. Unstructured and raw data are ingested using scalable pipelines to output the highest quality enriched data.
-
-Reference: [Data Engineering Wiki](<https://dataengineering.wiki/Concepts/Medallion+Architecture>)
-
-In summary, Microsoft Fabric [Real-Time Intelligence (RTI)](<https://aka.ms/fabric-docs-rta>) features benefit building a medallion architecture. They provide minimal latency for data in-motion, automatic light-weight transformations, dashboards, copilots to help you derive insights in a no-code experience, and allow you to take actions in real-time over your data. Additionally, all data is made available via OneLake in delta-parquet format to Lakehouse(s) using OneLake Availability as OneLogical copy for all your data. 
-![Industries](assets/Industries.png "Opportunity across industries")
-
----
 
 # Fabric Real-Time Intelligence features 
 
@@ -91,10 +73,6 @@ Let's cover the key-features and how we plan to use them for our architecture.
 - Feature [documentation](<https://learn.microsoft.com/fabric/get-started/copilot-real-time-intelligence>).
 ![Copilot](assets/Copilot.png "Fabric Copilot in KQL Queryset")
 
-
-### Data pipelines 
-- In this solution, the Bronze layer tables are populated by a Data Factory pipeline to copy data from our operational SQL database.
-- Feature [documentation](<https://learn.microsoft.com/fabric/data-factory/tutorial-end-to-end-pipeline>).
 
 ### Shortcuts
 - Shortcuts enable the creation of a live connections between OneLake and data sources, whether internal or external to Azure. This allows us to retrieve data from these locations as if they were seamlessly integrated into Microsoft Fabric.
